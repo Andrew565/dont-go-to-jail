@@ -15,6 +15,8 @@ export class Die {
   }
 
   setCurrentFace(index, update = true) {
+    if (this.faces[index] === undefined) throw new Error("Face not found");
+
     this.current_face = this.faces[index];
 
     // Check for holding if word die
