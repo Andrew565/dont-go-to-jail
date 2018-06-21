@@ -33,7 +33,9 @@ button {
   background-color: rebeccapurple;
 }
 
-.color__Utils, .color__Lightbulb, .color__Water {
+.color__Utils,
+.color__Lightbulb,
+.color__Water {
   background-color: lightgray;
   text-shadow: none;
 }
@@ -75,7 +77,10 @@ button {
   background-color: orangered;
 }
 
-.color__null, .color__Go, .color__To, .color__Jail {
+.color__null,
+.color__Go,
+.color__To,
+.color__Jail {
   text-transform: uppercase;
   text-shadow: none;
   color: #525252;

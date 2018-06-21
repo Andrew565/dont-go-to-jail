@@ -1,8 +1,8 @@
-import React from 'react'
-import './CurrentPlayerStats.css'
+import React from "react";
+import "./CurrentPlayerStats.css";
 
 export default function CurrentPlayerStats({ turn, player }) {
-  if (!player || !turn) return null
+  if (!player || !turn) return null;
 
   return (
     <header className="PlayerStats">
@@ -13,5 +13,5 @@ export default function CurrentPlayerStats({ turn, player }) {
       <h3>Turn: {turn}</h3>
       <h3>Current Score: {player.score}</h3>
     </header>
-  )
+  );
 }
