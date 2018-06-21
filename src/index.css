@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  color: #525252;
+  background-color: #fefefe;
+}
+
+button {
+  border-radius: 0.5em;
+  outline: none;
+  border: 1px solid turquoise;
+  background-color: paleturquoise;
+  color: #525252;
+  padding: 0.5em 0.75em;
+  font-size: 1em;
+  margin: 0 auto;
+}
+
+.hide {
+  display: none !important;
+}
+
+/* Colors for dice and property areas */
+.color__50 {
+  background-color: rebeccapurple;
+}
+
+.color__Utils, .color__Lightbulb, .color__Water {
+  background-color: lightgray;
+  text-shadow: none;
+}
+
+.color__100 {
+  background-color: powderblue;
+}
+
+.color__150 {
+  background-color: violet;
+}
+
+.color__200 {
+  background-color: coral;
+}
+
+.color__250 {
+  background-color: red;
+}
+
+.color__RR {
+  background-color: white;
+  text-shadow: none;
+}
+
+.color__300 {
+  background-color: yellow;
+}
+
+.color__400 {
+  background-color: green;
+}
+
+.color__500 {
+  background-color: blue;
+}
+
+.color__Wild {
+  background-color: orangered;
+}
+
+.color__null, .color__Go, .color__To, .color__Jail {
+  text-transform: uppercase;
+  text-shadow: none;
+  color: #525252;
+}

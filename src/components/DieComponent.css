@@ -1,0 +1,27 @@
+.Die {
+  background: white;
+  border: 1px solid #666666;
+  border-radius: 10px;
+  display: inline-block;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: white;
+  text-shadow: -1px -1px 0 #525252, 1px -1px 0 #525252, -1px 1px 0 #525252, 1px 1px 0 #525252;
+  line-height: 2.7em;
+  height: 2.7em;
+  width: 2.7em;
+}
+
+.Die.held__true {
+  border-color: red;
+}
+
+.Die label {
+  border-radius: 50%;
+  line-height: 2.3em;
+  height: 2.3em;
+  width: 2.3em;
+  display: inline-block;
+}

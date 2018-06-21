@@ -1,0 +1,27 @@
+.propertyArea {
+  display: flex;
+  margin: 0.5em 0;
+}
+
+.propertyArea-prop {
+  width: 85px;
+  height: 85px;
+  border: 3px solid #525252;
+  border-right: none;
+}
+
+.propertyArea-prop:nth-last-child(2) {
+  border-right: 3px solid #525252;
+}
+
+.propertyArea-prop__label {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.propertyArea-prop .Die.held__true {
+  border-color: #525252;
+}

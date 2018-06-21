@@ -1,0 +1,10 @@
+.DiceList {
+  display: flex;
+  justify-content: space-around;
+  width: 12em;
+  flex-wrap: wrap;
+}
+
+.DiceList .Die {
+  margin: 0.5em 0em;
+}

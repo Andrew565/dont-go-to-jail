@@ -1,0 +1,11 @@
+.PlayerStats-playerInfo {
+  margin-bottom: 1em;
+}
+
+.PlayerStats-playerInfo img {
+  border-radius: 50%;
+}
+
+.PlayerStats-playerInfo h1 {
+  margin: 0 0.5em;
+}
