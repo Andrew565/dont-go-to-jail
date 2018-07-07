@@ -7,6 +7,7 @@ export default class Player {
 
   incrementScore(points) {
     this.score += points;
+    return this.score;
   }
 
   incrementRoll() {

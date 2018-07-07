@@ -7,7 +7,7 @@ export default function CurrentPlayerStats({ turn, player }) {
   return (
     <header className="PlayerStats">
       <div className="PlayerStats-playerInfo">
-        <img src="http://via.placeholder.com/75x75/dddddd/525252?text=Avatar" alt="" />
+        {/* <img src="http://via.placeholder.com/75x75/dddddd/525252?text=Avatar" alt="" /> */}
         <h1>Player #{player.id}</h1>
       </div>
       <h3>Turn: {turn}</h3>

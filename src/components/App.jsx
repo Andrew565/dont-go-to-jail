@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import CurrentPlayerStats from "./CurrentPlayerStats";
 import DiceList from "./DiceList";
+import GoneToJailTurnEndModal from "./GoneToJailTurnEndModal";
 import PropertyArea from "./PropertyArea";
+import TurnEndModal from "./TurnEndModal";
+import WinnersModal from "./WinnersModal";
 import DiceStore from "../models/DiceStore";
 import Game from "../models/Game";
 
@@ -16,13 +19,18 @@ export default class App extends Component {
       numberOfPlayers: 1,
       totalScore: 15000,
       showGoneToJailModal: "hide",
-      showTurnEndModal: "hide"
+      showTurnEndModal: "hide",
+      showWinnersModal: "hide"
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     document.addEventListener("diceUpdated", () => {
       this.forceUpdate();
+    });
+
+    document.addEventListener("winnersDeclared", () => {
+      this.setState({ showWinnersModal: "show", winners: this.state.game.winners });
     });
   }
 
@@ -32,7 +40,8 @@ export default class App extends Component {
     DiceStore.rollDice();
 
     if (DiceStore.hasGoToJail()) {
-      this.showGoneToJailModal();
+      const nextPlayer = this.state.game.getNextPlayerId();
+      this.setState({ showGoneToJailModal: "show", nextPlayer });
     }
   };
 
@@ -56,11 +65,6 @@ export default class App extends Component {
       showTurnEndModal: "hide"
     });
 
-    if (!DiceStore.hasGoToJail()) {
-      const pointsEarnedThisRound = DiceStore.getScore();
-      this.state.game.saveScore(pointsEarnedThisRound);
-    }
-
     // Set new current player
     this.state.game.moveOnToNextPlayer();
 
@@ -68,46 +72,22 @@ export default class App extends Component {
     DiceStore.resetDice();
   };
 
-  showGoneToJailModal = () => {
-    this.setState({ showGoneToJailModal: "show" });
+  startNewGame = () => {
+    window.location.reload(true);
   };
 
-  showTurnEndModal = () => {
+  showTurnEndModal = async () => {
     const pointsEarnedThisRound = DiceStore.getScore();
+    await this.state.game.saveScore(pointsEarnedThisRound);
+
     const nextPlayer = this.state.game.getNextPlayerId();
-    this.setState({ showTurnEndModal: "show", pointsEarnedThisRound, nextPlayer });
+    const modal =
+      this.state.game.winners && this.state.game.winners.length > 0
+        ? { showWinnersModal: "show" }
+        : { showTurnEndModal: "show" };
+    const newState = Object.assign({}, this.state, modal, { pointsEarnedThisRound, nextPlayer });
+    this.setState(newState);
   };
-
-  renderGoneToJailTurnEnd() {
-    return (
-      <article className={`TurnEndModal ${this.state.showGoneToJailModal}`}>
-        <h1>Oh No!</h1>
-        <p>
-          You rolled <strong>Go to Jail</strong>!
-        </p>
-        <button onClick={this.startNextRound}>Move on to Player {this.state.nextPlayer || 1}</button>
-      </article>
-    );
-  }
-
-  renderManualTurnEnd() {
-    return (
-      <article className={`TurnEndModal ${this.state.showTurnEndModal}`}>
-        <h1>Good Round!</h1>
-        <p>You earned {this.state.pointsEarnedThisRound} points this round!</p>
-        <button onClick={this.startNextRound}>Move on to Player {this.state.nextPlayer || 1}</button>
-      </article>
-    );
-  }
-
-  renderModals() {
-    return (
-      <div>
-        {this.renderGoneToJailTurnEnd()}
-        {this.renderManualTurnEnd()}
-      </div>
-    );
-  }
 
   renderPropertyArea(propertyType, quantity = 3) {
     return <PropertyArea propertyType={propertyType} quantity={quantity} />;
@@ -122,7 +102,13 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        {this.state.game && this.renderModals()}
+        {this.state.game && (
+          <div>
+            <GoneToJailTurnEndModal startNextRound={this.startNextRound} {...this.state} />
+            <TurnEndModal startNextRound={this.startNextRound} {...this.state} />
+            <WinnersModal startNewGame={this.startNewGame} {...this.state} />
+          </div>
+        )}
         <header className={`App-header ${showSetup}`}>
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
           <h2>Don't Go To Jail!</h2>
