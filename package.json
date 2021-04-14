@@ -4,7 +4,7 @@
   "private": false,
   "homepage": "https://andrewthecreator.com/dgtj",
   "dependencies": {
-    "@types/jest": "^23.1.1",
+    "@types/jest": "^23.3.14",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
   },
